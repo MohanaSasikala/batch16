@@ -1,0 +1,53 @@
+
+# Bar Chart
+categories = ['A', 'B', 'C', 'D']
+values = [10, 25, 15, 30]
+
+plt.figure(figsize=(6, 4))
+plt.bar(categories, values, color='purple')
+plt.xlabel("Categories")
+plt.ylabel("Values")
+plt.title("Bar Chart Example")
+plt.show()
+
+# Histogram (Matplotlib)
+data = np.random.randn(1000)
+plt.figure(figsize=(7, 5))
+plt.hist(data, bins=30, color='green', edgecolor='black', alpha=0.7)
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Histogram Example")
+plt.show()
+
+# Histogram with KDE (Seaborn)
+data = np.random.randn(1000)
+df = pd.DataFrame(data, columns=['Values'])
+sns.histplot(df['Values'], bins=30, kde=True, color='blue')
+plt.title("Histogram with KDE")
+plt.show()
+
+# Load tips dataset
+tips = sns.load_dataset('tips')
+
+# Box Plot
+plt.figure(figsize=(6, 4))
+sns.boxplot(x=tips['total_bill'])
+plt.title("Box Plot of Total Bill")
+plt.show()
+
+# Pair Plot
+sns.pairplot(tips, hue='sex')
+plt.show()
+
+# Label Encoding
+encoder = LabelEncoder()
+for col in ['sex', 'smoker', 'day', 'time']:
+    tips[col] = encoder.fit_transform(tips[col])
+
+# Correlation Heatmap
+corr_matrix = tips.corr()
+plt.figure(figsize=(7, 5))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Correlation Heatmap")
+plt.show()
+
